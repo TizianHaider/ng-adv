@@ -7,13 +7,23 @@ import { FoodItem } from './food.model';
   providedIn: 'root',
 })
 export class FoodService {
-  http = inject(HttpClient);
+  private url = `${environment.api}/food`;
+
+  constructor(private httpClient: HttpClient) {}
 
   getFood() {
-    return this.http.get<FoodItem[]>(`${environment.api}/food`);
+      return this.httpClient.get<FoodItem[]>(this.url);
   }
 
-  addFood(food: FoodItem) { }
+  addFood(food: FoodItem) {
+      return this.httpClient.post<FoodItem>(this.url, food);
+  }
 
-  updateFood(food: FoodItem) { }
+  updateFood(food: FoodItem) {
+      return this.httpClient.put<FoodItem>(`${this.url}/${food.id}`, food);
+  }
+
+  deleteFood(id: number) {
+      return this.httpClient.delete<FoodItem>(`${this.url}/${id}`);
+  }
 }

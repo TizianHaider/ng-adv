@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavItem } from './nav-item.model';
+import { NavbarService } from './navbar.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +10,7 @@ import { NavItem } from './nav-item.model';
 })
 export class NavbarComponent {
 
-  items: NavItem[] = [
-    { title: 'Home', url: '/' },
-    { title: 'Products', url: '/products' },
-    { title: 'About', url: '/about' },
-  ];
+  ms = inject(NavbarService);
+  items = this.ms.getTopItems().pipe(tap(val => console.log("navitems: ", val)));
 
 }

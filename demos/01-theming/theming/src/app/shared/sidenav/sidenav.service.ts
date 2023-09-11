@@ -51,7 +51,7 @@ export class SideNavService {
     this.visible$.next(status);
   }
 
-  getTopItems(): Observable<NavItem[]> {
+  getTopItems() {
     return this.http.get<NavItem[]>(`${environment.api}top-links`);
   }
 }

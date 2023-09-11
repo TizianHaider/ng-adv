@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { SideNavService } from '../sidenav/sidenav.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { SideNavService } from '../sidenav/sidenav.service';
 export class NavbarComponent {
   ms = inject(SideNavService);
   sns = inject(SnackbarService);
-  menuItems = this.ms.getTopItems();
+  menuItems = this.ms.getTopItems().pipe(tap (val => console.log("current val", val)));
 
   toggleMenu() {
     this.ms.toggleMenuVisibility();

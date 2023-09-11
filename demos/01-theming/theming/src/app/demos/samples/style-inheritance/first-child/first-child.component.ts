@@ -14,6 +14,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
         border: blue 4px solid;
       }
     `,
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FirstChildComponent { }
