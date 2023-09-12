@@ -1,4 +1,7 @@
 <mat-toolbar color="primary">
+  <div (click)="toggleMenuVisibility()" class="hamburgerMenu">
+    <mat-icon>menu</mat-icon>
+  </div>
   <mat-toolbar-row>
     <div *ngFor="let item of items | async" [routerLink]="[item.url]">
       {{ item.title }}
